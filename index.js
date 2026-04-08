@@ -1,18 +1,17 @@
 const express = require('express');
-const routes = require('./src/routes/index.route');
-const logger = require('./src/middlewares/logger.middleware');
-const {logger, errorHandler} = require('./src/middlewares/main.middleware');
-const app = express();
+const routes = require('./src/routes/index.routes')
+const {logger, errorHandler} = require('./src/middlewares/main.middlewares')
+const app = express()
 
-app.use(express.json());
+app.use(express.json())
 app.use(logger);
 
-// Utilizando as rotas
-app.use(routes);
+app.use(routes)
 
 app.use(errorHandler)
 
-const PORT = 3001;
+const PORT = 3001
+
 app.listen(PORT, () => {
-  console.log(`[SERVIDOR]: Biblioteca online em http://localhost:${PORT}`);
-});
+  console.log(`[SERVIDOR]: Biblioteca online em http://localhost:${PORT}`)
+})

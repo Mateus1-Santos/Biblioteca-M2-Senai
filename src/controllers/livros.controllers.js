@@ -1,14 +1,12 @@
-const livrosService = require('../services/livro.service');
+const livrosService = require('../services/livros.services');
 
 // GET /livros — Lista todos os livros
-const listarLivros = async (req, res) => {
+const listarLivros = async (req, res, next) => {
   try {
-    return next(new Error('Erro de teste'))
     const livros = await livrosService.listarTodosLivros();
     res.status(200).json({ total: livros.length, livros });
   } catch (erro) {
-    next(erro);
-    //res.status(500).json({ erro: 'Erro interno ao listar livros.' });
+    res.status(500).json({ erro: 'Erro interno ao listar livros.' });
   }
 };
 

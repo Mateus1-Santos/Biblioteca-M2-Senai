@@ -1,12 +1,16 @@
-const errorHandler = (err, req, res, next) => {
-    console.log(`ERRO: ${req.method} ${req.url}`, err.menssage)
+const errorHandler = (err, req, res, next ) => {
+    console.error(`[ERRO] ${req.method} ${req.url}: `, err.message)
 
-    const status = err.status || 500;
+    //determina o status - se o erro ja tem um status definidio, usa ele 
+    //caso contrário, 500 é o padrão
+    const status = err.status || 500
 
+    // responde ao cliente com uma resposta amigavel 
     res.status(status).json({
-        erro: err.menssage || "Erro interno na Biblioteca M2",
+        erro: err.message || "Erro interno na Biblioteca Ralph & Teddy.",
         caminho: req.url,
     });
-};
+
+}
 
 module.exports = errorHandler;
